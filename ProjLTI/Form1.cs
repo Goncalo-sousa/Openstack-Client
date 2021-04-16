@@ -38,11 +38,11 @@ namespace ProjLTI
 
             // ... UTILIZANDO JSON: CRIAR UMA STRING COM O BODY A SER ENVIADO NO POST
 
-            String jsonToSend = "{\"auth\": {\"identity\": {\"methods\": [\"password\"],\"password\": {\"user\": {\"id\": \"d1b3ce3c523748eb8ba056775b7dca9d\",\"password\": \"devstack\"}}},\"scope\": {\"project\": {\"id\": \"9fadd03b32124fd2b7130f6ad094a299\"}}}}";
+            String jsonToSend = "{\"auth\":{\"identity\":{\"methods\":[\"password\"],\"password\":{\"user\":{\"name\":\""+ this.textBoxUsername +"\",\"domain\":{\"name\":\"Default\"},\"password\":\""+this.textBoxPassword+"\"}}}}}";
 
             // ... PEDIDO POST AO API DO KEYSTONE
 
-            var responseString = myWebClient.UploadString("http://127.0.0.1:8080/identity/v3/auth/tokens/", jsonToSend);
+            var responseString = myWebClient.UploadString("http://127.0.0.1:8080/identity/v3/auth/tokens", jsonToSend);
             WebHeaderCollection myWebHeaderCollection = myWebClient.ResponseHeaders;
 
             // ... RETIRAR DOS HEADERS RECEBIDOS NA RESPOSTA O TOKEN
@@ -103,6 +103,60 @@ namespace ProjLTI
 
             MessageBox.Show(jsonText, "Json criado a partir do XML convertido");
 
+
+
+            //projetos
+            var projects = myWebClient.DownloadString("http://127.0.0.1:8080/identity/v3/auth/projects");
+            MessageBox.Show(projects, "Projetos");
+            JsonObject 
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            var myWebClient = new WebClient();
+            myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+
+
+            // ... UTILIZANDO JSON: CRIAR UMA STRING COM O BODY A SER ENVIADO NO POST
+
+            String jsonToSend = "{\"auth\":{\"identity\":{\"methods\":[\"password\"],\"password\":{\"user\":{\"name\":\"" + this.textBoxUsername + "\",\"domain\":{\"name\":\"Default\"},\"password\":\"" + this.textBoxPassword + "\"}}}}}";
+
+            // ... PEDIDO POST AO API DO KEYSTONE
+
+            var responseString = myWebClient.UploadString("http://127.0.0.1:8080/identity/v3/auth/tokens", jsonToSend);
+            WebHeaderCollection myWebHeaderCollection = myWebClient.ResponseHeaders;
+
+            // ... RETIRAR DOS HEADERS RECEBIDOS NA RESPOSTA O TOKEN
+
+            for (int i = 0; i < myWebHeaderCollection.Count; i++)
+            {
+                if (myWebHeaderCollection.GetKey(i) == "X-Subject-Token")
+                {
+                    authToken = myWebHeaderCollection.Get(i);
+                }
+            }
+
+            // ... MOSTRAR O TOKEN NO ECRAN
+
+            MessageBox.Show(authToken, "Token de autenticação do OpenStack");
+
+
+            // EXEMPLO DE UM PEDIDO GET DIRIGIDO AO API DO SERVIÇO NOVA (COMPUTE) UTILIZANDO UM TOKEN DE AUTENTICAÇÃO
+
+            myWebClient = new WebClient();
+            myWebClient.Headers.Add("x-auth-token", authToken);
+
+            String url = "http://127.0.0.1:8080/compute/v2.1/servers/" + instanceId;
+
+            // String url = "http://127.0.0.1:8080/compute/v2.1/servers"; // A UTILIZAR SE SE PRETENDER OBTER TODAS AS INSTANCIAS DO PROJETO
+
+            // ... PEDIDO GET AO API DO NOVA
+
+            responseString = myWebClient.DownloadString(url);
+
+            // ... MOSTRAR O JSON RECEBIDO NO ECRAN
+
+            MessageBox.Show(responseString, "Resposta enviada do Openstack em Json");
         }
     }
 }
