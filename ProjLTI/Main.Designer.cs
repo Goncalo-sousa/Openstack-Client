@@ -1,7 +1,7 @@
 ﻿
 namespace ProjLTI
 {
-    partial class Form1
+    partial class Main
     {
         /// <summary>
         /// Required designer variable.
@@ -34,40 +34,45 @@ namespace ProjLTI
             this.label1 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.textBoxUsername = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxProjects = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnOpenProject = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(61, 178);
+            this.textBoxPassword.Location = new System.Drawing.Point(81, 219);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPassword.Size = new System.Drawing.Size(132, 22);
             this.textBoxPassword.TabIndex = 9;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(58, 162);
+            this.label2.Location = new System.Drawing.Point(77, 199);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.Size = new System.Drawing.Size(73, 17);
             this.label2.TabIndex = 8;
             this.label2.Text = "Password:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(58, 100);
+            this.label1.Location = new System.Drawing.Point(77, 123);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.Size = new System.Drawing.Size(77, 17);
             this.label1.TabIndex = 7;
             this.label1.Text = "Username:";
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(61, 224);
+            this.btnLogin.Location = new System.Drawing.Point(81, 276);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(75, 23);
+            this.btnLogin.Size = new System.Drawing.Size(100, 28);
             this.btnLogin.TabIndex = 6;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -75,40 +80,56 @@ namespace ProjLTI
             // 
             // textBoxUsername
             // 
-            this.textBoxUsername.Location = new System.Drawing.Point(61, 116);
+            this.textBoxUsername.Location = new System.Drawing.Point(81, 143);
+            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxUsername.Name = "textBoxUsername";
-            this.textBoxUsername.Size = new System.Drawing.Size(100, 20);
+            this.textBoxUsername.Size = new System.Drawing.Size(132, 22);
             this.textBoxUsername.TabIndex = 5;
             // 
-            // listBox1
+            // listBoxProjects
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(311, 116);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(439, 147);
-            this.listBox1.TabIndex = 10;
+            this.listBoxProjects.FormattingEnabled = true;
+            this.listBoxProjects.ItemHeight = 16;
+            this.listBoxProjects.Location = new System.Drawing.Point(415, 133);
+            this.listBoxProjects.Margin = new System.Windows.Forms.Padding(4);
+            this.listBoxProjects.Name = "listBoxProjects";
+            this.listBoxProjects.Size = new System.Drawing.Size(584, 180);
+            this.listBoxProjects.TabIndex = 10;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(308, 100);
+            this.label3.Location = new System.Drawing.Point(411, 113);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 13);
+            this.label3.Size = new System.Drawing.Size(64, 17);
             this.label3.TabIndex = 11;
             this.label3.Text = "Projetos:";
             // 
+            // btnOpenProject
+            // 
+            this.btnOpenProject.Location = new System.Drawing.Point(885, 333);
+            this.btnOpenProject.Name = "btnOpenProject";
+            this.btnOpenProject.Size = new System.Drawing.Size(114, 23);
+            this.btnOpenProject.TabIndex = 12;
+            this.btnOpenProject.Text = "Abrir Projeto";
+            this.btnOpenProject.UseVisualStyleBackColor = true;
+            this.btnOpenProject.Click += new System.EventHandler(this.btnOpenProject_Click);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.btnOpenProject);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxProjects);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.textBoxUsername);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -123,8 +144,9 @@ namespace ProjLTI
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.TextBox textBoxUsername;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxProjects;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnOpenProject;
     }
 }
 
