@@ -1,7 +1,7 @@
 ﻿
 namespace ProjLTI
 {
-    partial class openProject
+    partial class Volumes
     {
         /// <summary>
         /// Required designer variable.
@@ -46,17 +46,17 @@ namespace ProjLTI
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(45, 48);
+            this.listBox1.Location = new System.Drawing.Point(242, 53);
             this.listBox1.Margin = new System.Windows.Forms.Padding(2);
             this.listBox1.Name = "listBox1";
             this.listBox1.ScrollAlwaysVisible = true;
-            this.listBox1.Size = new System.Drawing.Size(526, 147);
+            this.listBox1.Size = new System.Drawing.Size(526, 225);
             this.listBox1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 33);
+            this.label1.Location = new System.Drawing.Point(239, 38);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
@@ -65,19 +65,19 @@ namespace ProjLTI
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(504, 356);
+            this.btnExit.Location = new System.Drawing.Point(11, 325);
             this.btnExit.Margin = new System.Windows.Forms.Padding(2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(56, 19);
             this.btnExit.TabIndex = 2;
-            this.btnExit.Text = "Exit";
+            this.btnExit.Text = "Back";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(80, 225);
+            this.label2.Location = new System.Drawing.Point(80, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 13);
             this.label2.TabIndex = 3;
@@ -85,21 +85,21 @@ namespace ProjLTI
             // 
             // textBoxNameCreation
             // 
-            this.textBoxNameCreation.Location = new System.Drawing.Point(83, 261);
+            this.textBoxNameCreation.Location = new System.Drawing.Point(83, 87);
             this.textBoxNameCreation.Name = "textBoxNameCreation";
             this.textBoxNameCreation.Size = new System.Drawing.Size(100, 20);
             this.textBoxNameCreation.TabIndex = 4;
             // 
             // textBoxDescriptionCreation
             // 
-            this.textBoxDescriptionCreation.Location = new System.Drawing.Point(83, 313);
+            this.textBoxDescriptionCreation.Location = new System.Drawing.Point(83, 139);
             this.textBoxDescriptionCreation.Name = "textBoxDescriptionCreation";
             this.textBoxDescriptionCreation.Size = new System.Drawing.Size(100, 20);
             this.textBoxDescriptionCreation.TabIndex = 5;
             // 
             // textBoxSizeCreation
             // 
-            this.textBoxSizeCreation.Location = new System.Drawing.Point(83, 287);
+            this.textBoxSizeCreation.Location = new System.Drawing.Point(83, 113);
             this.textBoxSizeCreation.Name = "textBoxSizeCreation";
             this.textBoxSizeCreation.Size = new System.Drawing.Size(100, 20);
             this.textBoxSizeCreation.TabIndex = 6;
@@ -107,7 +107,7 @@ namespace ProjLTI
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(42, 264);
+            this.label3.Location = new System.Drawing.Point(42, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 7;
@@ -116,7 +116,7 @@ namespace ProjLTI
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(50, 290);
+            this.label4.Location = new System.Drawing.Point(50, 116);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(27, 13);
             this.label4.TabIndex = 8;
@@ -125,7 +125,7 @@ namespace ProjLTI
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 316);
+            this.label5.Location = new System.Drawing.Point(17, 142);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 13);
             this.label5.TabIndex = 9;
@@ -133,7 +133,7 @@ namespace ProjLTI
             // 
             // btnCreationVolume
             // 
-            this.btnCreationVolume.Location = new System.Drawing.Point(108, 352);
+            this.btnCreationVolume.Location = new System.Drawing.Point(108, 178);
             this.btnCreationVolume.Name = "btnCreationVolume";
             this.btnCreationVolume.Size = new System.Drawing.Size(75, 23);
             this.btnCreationVolume.TabIndex = 10;
@@ -143,7 +143,7 @@ namespace ProjLTI
             // 
             // btnRefreshVolume
             // 
-            this.btnRefreshVolume.Location = new System.Drawing.Point(485, 200);
+            this.btnRefreshVolume.Location = new System.Drawing.Point(693, 295);
             this.btnRefreshVolume.Name = "btnRefreshVolume";
             this.btnRefreshVolume.Size = new System.Drawing.Size(75, 23);
             this.btnRefreshVolume.TabIndex = 11;
@@ -151,11 +151,11 @@ namespace ProjLTI
             this.btnRefreshVolume.UseVisualStyleBackColor = true;
             this.btnRefreshVolume.Click += new System.EventHandler(this.btnRefreshVolume_Click);
             // 
-            // openProject
+            // Volumes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(629, 395);
+            this.ClientSize = new System.Drawing.Size(800, 355);
             this.Controls.Add(this.btnRefreshVolume);
             this.Controls.Add(this.btnCreationVolume);
             this.Controls.Add(this.label5);
@@ -169,8 +169,8 @@ namespace ProjLTI
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "openProject";
-            this.Text = "openProject";
+            this.Name = "Volumes";
+            this.Text = "Volumes";
             this.Load += new System.EventHandler(this.openProject_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

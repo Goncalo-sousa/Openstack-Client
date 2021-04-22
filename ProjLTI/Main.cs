@@ -8,6 +8,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -26,6 +27,9 @@ namespace ProjLTI
         public Project idProject;
         public Boolean authenticated = false;
         public String ipaddr = "178.128.137.202";
+        public Image file;
+
+        public object MessegeBox { get; private set; }
 
         public Main()
         {
@@ -33,6 +37,9 @@ namespace ProjLTI
             this.btnOpenProject.Hide();
             this.btnUploadImage.Hide();
             this.labelUser.Hide();
+            this.labelServidor.Hide();
+            
+
         }
 
         /*private void button1_Click(object sender, EventArgs e)
@@ -126,9 +133,10 @@ namespace ProjLTI
             var myWebClient = new WebClient();
             myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
 
+            //ipaddr = this.textBoxIPServer.Text; ///////!!!!! descomentar no fim !!!!!!!!!!!!!!!!!!! //////////////
 
             // ... UTILIZANDO JSON: CRIAR UMA STRING COM O BODY A SER ENVIADO NO POST
-            if ( this.textBoxPassword == null && this.textBoxUsername == null)
+            if ( this.textBoxPassword == null || this.textBoxUsername == null || ipaddr == null)
             {
                 MessageBox.Show("username or password is empty!");
             }
@@ -185,6 +193,9 @@ namespace ProjLTI
             remendo();
             this.labelUser.Show();
             this.labelUserLogin.Text = this.textBoxUsername.Text;
+            this.label_IP.Text = ipaddr;
+            this.comboBoxProject.SelectedIndex = 0;
+            authWithToken();
 
 
         }
@@ -196,19 +207,19 @@ namespace ProjLTI
             this.comboBoxProject.Items.Add(name);
         }
 
-        public void createlistBoxVMS(string id, string name)
+        /*public void createlistBoxVMS(string id, string name)
         {
 
             string aux = "Id:" + id + " || Name:" + name;
 
             this.listBoxVMs.Items.Add(aux);
-        }
+        }*/
 
         
 
         private void btnOpenProject_Click(object sender, EventArgs e)
         {
-            openProject formAux = new openProject(this);
+            Volumes formAux = new Volumes(this);
             formAux.ShowDialog();
 
          
@@ -272,6 +283,35 @@ namespace ProjLTI
             }
         }
         
+
+        public AllVirtualMachines instances()
+        {
+            authWithToken();
+            var myWebClient = new WebClient();
+            myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+            myWebClient.Headers.Add("X-Auth-Token", authToken);
+            Console.WriteLine(authToken);
+            var dataVMs = myWebClient.DownloadString("http://" + ipaddr + "/compute/v2.1/servers");
+            var servers = JsonConvert.DeserializeObject<AllVirtualMachines>(dataVMs);
+            return servers;
+        }
+        
+        public AllImages images()
+        {
+            authWithToken();
+            var myWebClient = new WebClient();
+            myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+            myWebClient.Headers.Add("X-Auth-Token", authToken);
+            Console.WriteLine(authToken);
+            var dataImages = myWebClient.DownloadString("http://" + ipaddr + "/image/v2/images");
+            Console.WriteLine(dataImages);
+            var images = JsonConvert.DeserializeObject<AllImages>(dataImages);
+            Console.WriteLine(images);
+            return images;
+        }
+
+
+
         public void creationVolume (string dataCreation)
         {
             var myWebClient = new WebClient();
@@ -284,13 +324,13 @@ namespace ProjLTI
             MessageBox.Show(responseVolumes);
         }
 
-        private void btnShowVMs_Click(object sender, EventArgs e)
+        /*private void btnShowVMs_Click(object sender, EventArgs e)
         {
 
             this.listBoxVMs.Items.Clear();
             authWithToken();
             var myWebClient = new WebClient();
-            /*myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+            *//*myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
             myWebClient.Headers.Add("X-Auth-Token", authToken);
 
             var data = myWebClient.DownloadString("http://178.128.137.202/identity/v3/auth/projects");
@@ -314,7 +354,7 @@ namespace ProjLTI
                 {
                     authToken = myWebHeaderCollectionScoped.Get(i);
                 }
-            }*/
+            }*//*
 
            // myWebClient = new WebClient();
             myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
@@ -329,37 +369,102 @@ namespace ProjLTI
                 createlistBoxVMS(itemVM.Id, itemVM.Name);
             }
            
-        }
+        }*/
         public void remendo()
         {
             this.labelUsername.Hide();
             this.labelPass.Hide();
+            this.labelServer.Hide();
             this.btnLogin.Hide();
             this.textBoxPassword.Hide();
             this.textBoxUsername.Hide();
+            this.textBoxIPServer.Hide();
             this.btnOpenProject.Show();
             this.btnUploadImage.Show();
+            this.labelServidor.Show();
+            this.labelUser.Show();
 
         }
 
-        private void btnUploadImage_Click(object sender, EventArgs e)
+        /*private void btnUploadImage_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();  //abrir o ficheiro
-            openFileDialog1.Filter = "Cloud Image (*.ami, *.ari, *.aki, *.vhd, *.vhdx, *.vmdk, *.raw, *.qcow2, *.vdi, *.ploop, *.iso) | *.ami; *.ari; *.aki; *.vhd; *.vhdx; *.vmdk; *.raw; *.qcow2; *.vdi; *.ploop; *.iso"; //filtrar por tipo de ficheiro
-            //openFileDialog1.FilterIndex = 1;  //default
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            authWithToken();
+            OpenFileDialog openFileDialog = new OpenFileDialog();  //abrir o ficheiro
+            openFileDialog.Filter = "Cloud Image (*.ami, *.ari, *.aki, *.vhd, *.vhdx, *.vmdk, *.raw, *.qcow2, *.vdi, *.ploop, *.iso) | *.ami; *.ari; *.aki; *.vhd; *.vhdx; *.vmdk; *.raw; *.qcow2; *.vdi; *.ploop; *.iso"; //filtrar por tipo de ficheiro
+            String fileContent;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                var pathFile = openFileDialog1.FileName;
+                var pathFile = openFileDialog.FileName;
                 MessageBox.Show(pathFile);
-                /*inMethod = "EXCEL";
+                var fileStream = openFileDialog.OpenFile();
 
-                //este ultimo so vai ser invocado no correr fluxos
-                jsonString = excelToJSON(inPath);  //chama a funcao excelToJson que converte o ficheiro excel numa jsonstring, para efeitos de teste, comentar antes da entrega!
+                using (StreamReader reader = new StreamReader(fileStream))
+                {
+                    fileContent = reader.ReadToEnd();
 
-                permitirOutput(); */ //para desbloquear os botoes de Output
+                }
+
+                if (authenticated)
+                {
+                    var myWebClient = new WebClient();
+                    myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+                    myWebClient.Headers.Add("X-Auth-Token", authToken);
+                    String jsonToSend = "{\"container_format\":\"bare\",\"disk_format\":\"raw\",\"name\":\"PostmanImage2\"}";
+                   var dataVMs = myWebClient.UploadString("http://" + ipaddr + "/image/v2/images", jsonToSend);
+                    MessageBox.Show(dataVMs);
+                    var file = JsonConvert.DeserializeObject<Image>(dataVMs);
+
+
+                    var myWebClientFile = new WebClient();
+                    myWebClientFile.Headers[HttpRequestHeader.ContentType] = "application/octet-stream";
+                    myWebClientFile.Headers.Add("X-Auth-Token", authToken);
+                    MessageBox.Show(file.File);
+                    var responseVolumes = myWebClientFile.UploadString("http://" + ipaddr + "/image" + file.File,WebRequestMethods.Http.Put ,fileContent);
+
+                    
+
+                }
+              
             }
 
+        }*/
+        public void uploadImage(string name, string disk_format, string container_format)
+        {
+            authWithToken();
+            OpenFileDialog openFileDialog = new OpenFileDialog();  //abrir o ficheiro
+            openFileDialog.Filter = "Cloud Image (*.ami, *.ari, *.aki, *.vhd, *.vhdx, *.vmdk, *.raw, *.qcow2, *.vdi, *.ploop, *.iso) | *.ami; *.ari; *.aki; *.vhd; *.vhdx; *.vmdk; *.raw; *.qcow2; *.vdi; *.ploop; *.iso"; //filtrar por tipo de ficheiro
+            String fileContent;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                var pathFile = openFileDialog.FileName;
+                MessageBox.Show(pathFile);
+                var fileStream = openFileDialog.OpenFile();
+
+                using (StreamReader reader = new StreamReader(fileStream))
+                {
+                    fileContent = reader.ReadToEnd();
+
+                }
+
+                if (authenticated)
+                {
+                    var myWebClient = new WebClient();
+                    myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+                    myWebClient.Headers.Add("X-Auth-Token", authToken);
+                    String jsonToSend = "{\"container_format\":" +"\""+container_format+"\""+",\"disk_format\":"+"\""+disk_format+"\""+",\"name\":"+"\""+name+"\""+"}";
+                    var dataVMs = myWebClient.UploadString("http://" + ipaddr + "/image/v2/images", jsonToSend);
+                    MessageBox.Show(dataVMs);
+                    var file = JsonConvert.DeserializeObject<Image>(dataVMs);
+
+
+                    var myWebClientFile = new WebClient();
+                    myWebClientFile.Headers[HttpRequestHeader.ContentType] = "application/octet-stream";
+                    myWebClientFile.Headers.Add("X-Auth-Token", authToken);
+                    MessageBox.Show(file.File);
+                    var responseVolumes = myWebClientFile.UploadString("http://" + ipaddr + "/image" + file.File, WebRequestMethods.Http.Put, fileContent);
+
+                }
+            }
         }
 
         public void authWithToken()
@@ -372,26 +477,57 @@ namespace ProjLTI
             var projects = JsonConvert.DeserializeObject<AllProject>(data);
 
             var projectIndex = this.comboBoxProject.SelectedIndex;
+            
+                idProject = projects.projects[projectIndex];
 
-            idProject = projects.projects[projectIndex];
-
-            // MessageBox.Show(idProject.Id);
-            String jsonWithScope = "{\"auth\":{\"identity\":{\"methods\":[\"password\"],\"password\":{\"user\":{\"name\":" + "\"" + this.textBoxUsername.Text + "\",\"domain\":{\"name\":\"Default\"},\"password\":" + "\"" + this.textBoxPassword.Text + "\"}}},\"scope\": {\"project\": {\"id\":" + "\"" + idProject.Id + "\"}}}}";
-
-
-            var responseStringScoped = myWebClient.UploadString("http://"+ipaddr+"/identity/v3/auth/tokens", jsonWithScope);
-            WebHeaderCollection myWebHeaderCollectionScoped = myWebClient.ResponseHeaders;
+                // MessageBox.Show(idProject.Id);
+                String jsonWithScope = "{\"auth\":{\"identity\":{\"methods\":[\"password\"],\"password\":{\"user\":{\"name\":" + "\"" + this.textBoxUsername.Text + "\",\"domain\":{\"name\":\"Default\"},\"password\":" + "\"" + this.textBoxPassword.Text + "\"}}},\"scope\": {\"project\": {\"id\":" + "\"" + idProject.Id + "\"}}}}";
 
 
-            for (int i = 0; i < myWebHeaderCollectionScoped.Count; i++)
-            {
-                if (myWebHeaderCollectionScoped.GetKey(i) == "X-Subject-Token")
+                var responseStringScoped = myWebClient.UploadString("http://" + ipaddr + "/identity/v3/auth/tokens", jsonWithScope);
+                WebHeaderCollection myWebHeaderCollectionScoped = myWebClient.ResponseHeaders;
+
+
+                for (int i = 0; i < myWebHeaderCollectionScoped.Count; i++)
                 {
-                    authToken = myWebHeaderCollectionScoped.Get(i);
+                    if (myWebHeaderCollectionScoped.GetKey(i) == "X-Subject-Token")
+                    {
+                        authToken = myWebHeaderCollectionScoped.Get(i);
+                    }
                 }
-            }
 
-             authenticated = true;
+                authenticated = true;
+         
+            
+        }
+
+        public void deleteImage(string idImage)
+        {
+            var myWebClient = new WebClient();
+            myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+            myWebClient.Headers.Add("X-Auth-Token", authToken);
+            myWebClient.UploadString("http://" + ipaddr + "/image/v2/images/" + idImage,"DELETE",string.Empty);
+
+        }
+        public void deleteInstance(string idInstance)
+        {
+            var myWebClient = new WebClient();
+            myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+            myWebClient.Headers.Add("X-Auth-Token", authToken);
+            myWebClient.UploadString("http://" + ipaddr + "/compute/v2.1/servers/" + idInstance,"DELETE",string.Empty);
+
+        }
+
+        private void btnInstances_Click(object sender, EventArgs e)
+        {
+            Instances formAux = new Instances(this);
+            formAux.ShowDialog();
+        }
+
+        private void btnImages_Click(object sender, EventArgs e)
+        {
+            Images formAux = new Images(this);
+            formAux.ShowDialog();
         }
     }
 }

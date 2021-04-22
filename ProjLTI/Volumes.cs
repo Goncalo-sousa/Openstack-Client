@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace ProjLTI
 {
-    public partial class openProject : Form
+    public partial class Volumes : Form
     {
         Main formMain;
         
-        public openProject(Main mainAux)
+        public Volumes(Main mainAux)
         {
             InitializeComponent();
             formMain = mainAux;

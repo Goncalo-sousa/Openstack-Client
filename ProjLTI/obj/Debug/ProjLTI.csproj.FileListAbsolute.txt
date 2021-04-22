@@ -30,5 +30,7 @@ C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\bin\Debug\System.Text.E
 C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\bin\Debug\System.Text.Json.xml
 C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\bin\Debug\System.ValueTuple.xml
-C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.openProject.resources
 C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.Main.resources
+C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.Instances.resources
+C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.Images.resources
+C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.Volumes.resources
