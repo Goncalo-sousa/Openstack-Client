@@ -23,18 +23,16 @@ namespace ProjLTI
         {
             var getFlavors = formMain.getFlavors();
             var getNetworks = formMain.getNetworks();
-            if (getFlavors == null && getNetworks ==null)
+            var getImages = formMain.images();
+            if (getFlavors == null && getNetworks == null)
             {
                 return;
             }
-            foreach (var flavorName in getFlavors.flavors)
-            {
-                
-               /*var flavorNames = new List<string>();
-                flavorNames.Add(flavorName.Name.Trim());*/
-                this.comboBoxFlavorInstance.Items.Add(flavorName.Name); 
-            }
-            
+            var flavorTocreate = getFlavors.flavors[this.comboBoxFlavorInstance.SelectedIndex].Id;
+            var networkTocreate = getNetworks.networks[this.comboBoxNetworkInstance.SelectedIndex].Id;
+            var imageTocreate = getImages.images[this.comboBoxImageInstance.SelectedIndex].Id;
+            formMain.createInstances(this.textBoxNameInstance.Text, flavorTocreate, imageTocreate, networkTocreate);
+            refreshListBox();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -58,7 +56,7 @@ namespace ProjLTI
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-
+            refreshListBox();
         }
 
         private void Instances_Load(object sender, EventArgs e)
@@ -118,6 +116,12 @@ namespace ProjLTI
                 createlistBoxVMS(itemVM.Id, itemVM.Name);
             }
 
+        }
+        public void editInstances(string name)
+        {
+            var instances = formMain.instances();
+            var idInstance = instances.servers[this.listBoxVMs.SelectedIndex].Id;
+            formMain.editInstance(name,idInstance);
         }
 
         private void btnBack_Click(object sender, EventArgs e)

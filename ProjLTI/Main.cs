@@ -547,10 +547,39 @@ namespace ProjLTI
             myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
             myWebClient.Headers.Add("X-Auth-Token", authToken);
 
-           var dataNetworks = myWebClient.DownloadString("http://" + ipaddr + ":9696/v2.0/networks");
-           // var dataNetworks = myWebClient.DownloadString("http://157.245.68.113:9696/v2.0/networks");
+            var dataNetworks = myWebClient.DownloadString("http://" + ipaddr + ":9696/v2.0/networks");
+            // var dataNetworks = myWebClient.DownloadString("http://157.245.68.113:9696/v2.0/networks");
             var networks = JsonConvert.DeserializeObject<AllNetworks>(dataNetworks);
             return networks;
+
+        }
+
+        public void createInstances(string name, string idFlavor, string idImage, string idNetwork)
+        {
+            var myWebClient = new WebClient();
+            myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+            myWebClient.Headers.Add("X-Auth-Token", authToken);
+            var jsonToCreation = "{\"server\":{\"name\":" + "\"" + name + "\"" + ",\"flavorRef\":\"http://127.0.0.1:8080/compute/v2.1/flavors/" + idFlavor + "\"" + ",\"imageRef\":" + "\"" + idImage + "\"" + ",\"networks\":[{\"uuid\":" + "\"" + idNetwork + "\"" + "}]}}";
+            myWebClient.UploadString("http://" + ipaddr + "/compute/v2.1/servers", jsonToCreation); 
+        }
+
+        public void editInstance(string name, string idInstance)
+        {
+            var myWebClient = new WebClient();
+            myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+            myWebClient.Headers.Add("X-Auth-Token", authToken);
+            var jsonToEdit = "{\"server\":{\"name\":"+"\""+name+"\""+"}}";
+            myWebClient.UploadString("http://" + ipaddr + "/compute/v2.1/servers/"+idInstance, WebRequestMethods.Http.Put, jsonToEdit);
+        }
+
+        public void statistics()
+        {
+            var myWebClient = new WebClient();
+            myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+            myWebClient.Headers.Add("X-Auth-Token", authToken);
+
+            //var statsCompute = myWebClient.DownloadString("http://" + ipaddr + "/compute/v2.1/os-quota-sets/"+idProject+"/detail");
+            //var statsvolumes = myWebClient.DownloadString("http://" + ipaddr + "/compute/v2.1/os-quota-sets/"+idProject+"/detail");
 
         }
     }

@@ -38,8 +38,6 @@ namespace ProjLTI
             this.button1 = new System.Windows.Forms.Button();
             this.textBoxNameInstance = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.comboBoxFlavorInstance = new System.Windows.Forms.ComboBox();
             this.comboBoxImageInstance = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -70,7 +68,7 @@ namespace ProjLTI
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(114, 216);
+            this.btnCreate.Location = new System.Drawing.Point(153, 190);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(75, 23);
             this.btnCreate.TabIndex = 23;
@@ -119,7 +117,7 @@ namespace ProjLTI
             // 
             this.textBoxNameInstance.Location = new System.Drawing.Point(89, 73);
             this.textBoxNameInstance.Name = "textBoxNameInstance";
-            this.textBoxNameInstance.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNameInstance.Size = new System.Drawing.Size(139, 20);
             this.textBoxNameInstance.TabIndex = 27;
             // 
             // label1
@@ -131,42 +129,26 @@ namespace ProjLTI
             this.label1.TabIndex = 28;
             this.label1.Text = "Name:";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 102);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "Description:";
-            // 
-            // textBoxDescription
-            // 
-            this.textBoxDescription.Location = new System.Drawing.Point(89, 99);
-            this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(100, 20);
-            this.textBoxDescription.TabIndex = 30;
-            // 
             // comboBoxFlavorInstance
             // 
             this.comboBoxFlavorInstance.FormattingEnabled = true;
-            this.comboBoxFlavorInstance.Location = new System.Drawing.Point(89, 125);
+            this.comboBoxFlavorInstance.Location = new System.Drawing.Point(89, 100);
             this.comboBoxFlavorInstance.Name = "comboBoxFlavorInstance";
-            this.comboBoxFlavorInstance.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxFlavorInstance.Size = new System.Drawing.Size(139, 21);
             this.comboBoxFlavorInstance.TabIndex = 31;
             // 
             // comboBoxImageInstance
             // 
             this.comboBoxImageInstance.FormattingEnabled = true;
-            this.comboBoxImageInstance.Location = new System.Drawing.Point(89, 152);
+            this.comboBoxImageInstance.Location = new System.Drawing.Point(89, 127);
             this.comboBoxImageInstance.Name = "comboBoxImageInstance";
-            this.comboBoxImageInstance.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxImageInstance.Size = new System.Drawing.Size(139, 21);
             this.comboBoxImageInstance.TabIndex = 32;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(44, 128);
+            this.label3.Location = new System.Drawing.Point(44, 103);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 13);
             this.label3.TabIndex = 33;
@@ -175,7 +157,7 @@ namespace ProjLTI
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(44, 155);
+            this.label5.Location = new System.Drawing.Point(44, 130);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 13);
             this.label5.TabIndex = 34;
@@ -184,15 +166,15 @@ namespace ProjLTI
             // comboBoxNetworkInstance
             // 
             this.comboBoxNetworkInstance.FormattingEnabled = true;
-            this.comboBoxNetworkInstance.Location = new System.Drawing.Point(89, 179);
+            this.comboBoxNetworkInstance.Location = new System.Drawing.Point(89, 154);
             this.comboBoxNetworkInstance.Name = "comboBoxNetworkInstance";
-            this.comboBoxNetworkInstance.Size = new System.Drawing.Size(100, 21);
+            this.comboBoxNetworkInstance.Size = new System.Drawing.Size(139, 21);
             this.comboBoxNetworkInstance.TabIndex = 35;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(33, 182);
+            this.label6.Location = new System.Drawing.Point(33, 157);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(50, 13);
             this.label6.TabIndex = 36;
@@ -209,8 +191,6 @@ namespace ProjLTI
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBoxImageInstance);
             this.Controls.Add(this.comboBoxFlavorInstance);
-            this.Controls.Add(this.textBoxDescription);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxNameInstance);
             this.Controls.Add(this.button1);
@@ -239,8 +219,6 @@ namespace ProjLTI
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBoxNameInstance;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.ComboBox comboBoxFlavorInstance;
         private System.Windows.Forms.ComboBox comboBoxImageInstance;
         private System.Windows.Forms.Label label3;

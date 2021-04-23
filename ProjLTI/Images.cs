@@ -50,7 +50,7 @@ namespace ProjLTI
             this.listBoxImages.Items.Add(aux);
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void btnCreateImage_Click(object sender, EventArgs e)
         {
             
             string name =this.textBoxNameImage.Text;

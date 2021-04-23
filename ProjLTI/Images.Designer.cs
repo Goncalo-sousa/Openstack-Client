@@ -58,7 +58,7 @@ namespace ProjLTI
             this.btnLogin.TabIndex = 27;
             this.btnLogin.Text = "Create";
             this.btnLogin.UseVisualStyleBackColor = true;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnLogin.Click += new System.EventHandler(this.btnCreateImage_Click);
             // 
             // textBoxNameImage
             // 

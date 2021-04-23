@@ -18,5 +18,13 @@ namespace ProjLTI
             InitializeComponent();
             formInstances = instancesAux;
         }
+
+        private void btnApplyChange_Click(object sender, EventArgs e)
+        {
+            formInstances.editInstances(this.textBox1.Text);
+            formInstances.refreshListBox();
+            this.Close();
+
+        }
     }
 }
