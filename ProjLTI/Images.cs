@@ -42,7 +42,7 @@ namespace ProjLTI
             }
         }
 
-        public void createlistBoxImages(string name, string status, string visibility, long size, string disk_format)
+        public void createlistBoxImages(string name, string status, string visibility, string size, string disk_format)
         {
 
             string aux = "Name: " + name + " Status: " + status + " Visibility: " + visibility + " Size: " + size + " Disk Format: " + disk_format;

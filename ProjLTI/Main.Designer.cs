@@ -37,7 +37,6 @@ namespace ProjLTI
             this.label3 = new System.Windows.Forms.Label();
             this.btnOpenProject = new System.Windows.Forms.Button();
             this.comboBoxProject = new System.Windows.Forms.ComboBox();
-            this.btnUploadImage = new System.Windows.Forms.Button();
             this.labelUser = new System.Windows.Forms.Label();
             this.labelUserLogin = new System.Windows.Forms.Label();
             this.textBoxIPServer = new System.Windows.Forms.TextBox();
@@ -50,7 +49,7 @@ namespace ProjLTI
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(36, 129);
+            this.textBoxPassword.Location = new System.Drawing.Point(67, 142);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(100, 20);
             this.textBoxPassword.TabIndex = 9;
@@ -58,7 +57,7 @@ namespace ProjLTI
             // labelPass
             // 
             this.labelPass.AutoSize = true;
-            this.labelPass.Location = new System.Drawing.Point(33, 113);
+            this.labelPass.Location = new System.Drawing.Point(64, 126);
             this.labelPass.Name = "labelPass";
             this.labelPass.Size = new System.Drawing.Size(56, 13);
             this.labelPass.TabIndex = 8;
@@ -67,7 +66,7 @@ namespace ProjLTI
             // labelUsername
             // 
             this.labelUsername.AutoSize = true;
-            this.labelUsername.Location = new System.Drawing.Point(33, 69);
+            this.labelUsername.Location = new System.Drawing.Point(64, 82);
             this.labelUsername.Name = "labelUsername";
             this.labelUsername.Size = new System.Drawing.Size(58, 13);
             this.labelUsername.TabIndex = 7;
@@ -75,7 +74,7 @@ namespace ProjLTI
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(63, 203);
+            this.btnLogin.Location = new System.Drawing.Point(94, 216);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 6;
@@ -85,7 +84,7 @@ namespace ProjLTI
             // 
             // textBoxUsername
             // 
-            this.textBoxUsername.Location = new System.Drawing.Point(36, 85);
+            this.textBoxUsername.Location = new System.Drawing.Point(67, 98);
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(100, 20);
             this.textBoxUsername.TabIndex = 5;
@@ -101,7 +100,7 @@ namespace ProjLTI
             // 
             // btnOpenProject
             // 
-            this.btnOpenProject.Location = new System.Drawing.Point(401, 322);
+            this.btnOpenProject.Location = new System.Drawing.Point(502, 322);
             this.btnOpenProject.Margin = new System.Windows.Forms.Padding(2);
             this.btnOpenProject.Name = "btnOpenProject";
             this.btnOpenProject.Size = new System.Drawing.Size(84, 22);
@@ -117,15 +116,6 @@ namespace ProjLTI
             this.comboBoxProject.Name = "comboBoxProject";
             this.comboBoxProject.Size = new System.Drawing.Size(121, 21);
             this.comboBoxProject.TabIndex = 15;
-            // 
-            // btnUploadImage
-            // 
-            this.btnUploadImage.Location = new System.Drawing.Point(503, 321);
-            this.btnUploadImage.Name = "btnUploadImage";
-            this.btnUploadImage.Size = new System.Drawing.Size(84, 22);
-            this.btnUploadImage.TabIndex = 20;
-            this.btnUploadImage.Text = "Upload image";
-            this.btnUploadImage.UseVisualStyleBackColor = true;
             // 
             // labelUser
             // 
@@ -146,7 +136,7 @@ namespace ProjLTI
             // 
             // textBoxIPServer
             // 
-            this.textBoxIPServer.Location = new System.Drawing.Point(36, 175);
+            this.textBoxIPServer.Location = new System.Drawing.Point(67, 188);
             this.textBoxIPServer.Name = "textBoxIPServer";
             this.textBoxIPServer.Size = new System.Drawing.Size(100, 20);
             this.textBoxIPServer.TabIndex = 25;
@@ -154,7 +144,7 @@ namespace ProjLTI
             // labelServer
             // 
             this.labelServer.AutoSize = true;
-            this.labelServer.Location = new System.Drawing.Point(33, 159);
+            this.labelServer.Location = new System.Drawing.Point(64, 172);
             this.labelServer.Name = "labelServer";
             this.labelServer.Size = new System.Drawing.Size(41, 13);
             this.labelServer.TabIndex = 24;
@@ -210,7 +200,6 @@ namespace ProjLTI
             this.Controls.Add(this.labelServer);
             this.Controls.Add(this.labelUserLogin);
             this.Controls.Add(this.labelUser);
-            this.Controls.Add(this.btnUploadImage);
             this.Controls.Add(this.comboBoxProject);
             this.Controls.Add(this.btnOpenProject);
             this.Controls.Add(this.label3);
@@ -236,7 +225,6 @@ namespace ProjLTI
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnOpenProject;
         private System.Windows.Forms.ComboBox comboBoxProject;
-        private System.Windows.Forms.Button btnUploadImage;
         private System.Windows.Forms.Label labelUser;
         private System.Windows.Forms.Label labelUserLogin;
         private System.Windows.Forms.TextBox textBoxIPServer;

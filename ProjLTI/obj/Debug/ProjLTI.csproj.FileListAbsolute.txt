@@ -34,3 +34,4 @@ C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.Main.
 C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.Instances.resources
 C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.Images.resources
 C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.Volumes.resources
+C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.EditImage.resources

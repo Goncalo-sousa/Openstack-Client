@@ -19,7 +19,7 @@ namespace ProjLTI
         public string Status { get; set; }
         public string DiskFormat { get; set; }
         public string Visibility { get; set; }
-        public long Size { get; set; }
+        public string Size { get; set; }
         public string Id { get; set; }
         public string File { get; set; }
 

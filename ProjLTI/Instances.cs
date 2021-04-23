@@ -21,12 +21,26 @@ namespace ProjLTI
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-
+            var getFlavors = formMain.getFlavors();
+            var getNetworks = formMain.getNetworks();
+            if (getFlavors == null && getNetworks ==null)
+            {
+                return;
+            }
+            foreach (var flavorName in getFlavors.flavors)
+            {
+                
+               /*var flavorNames = new List<string>();
+                flavorNames.Add(flavorName.Name.Trim());*/
+                this.comboBoxFlavorInstance.Items.Add(flavorName.Name); 
+            }
+            
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-
+            EditImage formAux = new EditImage(this);
+            formAux.ShowDialog();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -59,6 +73,27 @@ namespace ProjLTI
             {
                 createlistBoxVMS(itemVM.Id, itemVM.Name);
             }
+
+            var getFlavors = formMain.getFlavors();
+            var getNetworks = formMain.getNetworks();
+            var images = formMain.images();
+            if (getFlavors == null && getNetworks == null)
+            {
+                return;
+            }
+
+            foreach (var flavorName in getFlavors.flavors)
+            {
+                this.comboBoxFlavorInstance.Items.Add(flavorName.Name);
+            }
+            foreach (var imageName in images.images)
+            {
+                this.comboBoxImageInstance.Items.Add(imageName.Name);
+            }
+            foreach (var networkName in getNetworks.networks)
+            {
+                this.comboBoxNetworkInstance.Items.Add(networkName.Name);
+            }
         }
 
         public void createlistBoxVMS(string id, string name)
@@ -77,6 +112,7 @@ namespace ProjLTI
             {
                 return;
             }
+            this.listBoxVMs.Items.Clear();
             foreach (var itemVM in instances.servers)
             {
                 createlistBoxVMS(itemVM.Id, itemVM.Name);

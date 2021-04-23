@@ -35,7 +35,6 @@ namespace ProjLTI
         {
             InitializeComponent();
             this.btnOpenProject.Hide();
-            this.btnUploadImage.Hide();
             this.labelUser.Hide();
             this.labelServidor.Hide();
             
@@ -380,7 +379,6 @@ namespace ProjLTI
             this.textBoxUsername.Hide();
             this.textBoxIPServer.Hide();
             this.btnOpenProject.Show();
-            this.btnUploadImage.Show();
             this.labelServidor.Show();
             this.labelUser.Show();
 
@@ -528,6 +526,32 @@ namespace ProjLTI
         {
             Images formAux = new Images(this);
             formAux.ShowDialog();
+        }
+
+        public AllFlavors getFlavors()
+        {
+            var myWebClient = new WebClient();
+            myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+            myWebClient.Headers.Add("X-Auth-Token", authToken);
+
+            var dataFlavors = myWebClient.DownloadString("http://" + ipaddr + "/compute/v2.1/flavors");
+            var flavors = JsonConvert.DeserializeObject<AllFlavors>(dataFlavors);
+
+            return flavors;
+            
+        }
+
+        public AllNetworks getNetworks()
+        {
+            var myWebClient = new WebClient();
+            myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+            myWebClient.Headers.Add("X-Auth-Token", authToken);
+
+           var dataNetworks = myWebClient.DownloadString("http://" + ipaddr + ":9696/v2.0/networks");
+           // var dataNetworks = myWebClient.DownloadString("http://157.245.68.113:9696/v2.0/networks");
+            var networks = JsonConvert.DeserializeObject<AllNetworks>(dataNetworks);
+            return networks;
+
         }
     }
 }
