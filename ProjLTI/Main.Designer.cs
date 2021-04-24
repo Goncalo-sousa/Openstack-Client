@@ -59,6 +59,7 @@ namespace ProjLTI
             this.labelstatsVolumeStorage = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.btnRefreshStats = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBoxPassword
@@ -106,7 +107,7 @@ namespace ProjLTI
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(569, 21);
+            this.label3.Location = new System.Drawing.Point(501, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 13);
             this.label3.TabIndex = 11;
@@ -126,7 +127,7 @@ namespace ProjLTI
             // comboBoxProject
             // 
             this.comboBoxProject.FormattingEnabled = true;
-            this.comboBoxProject.Location = new System.Drawing.Point(616, 18);
+            this.comboBoxProject.Location = new System.Drawing.Point(548, 18);
             this.comboBoxProject.Name = "comboBoxProject";
             this.comboBoxProject.Size = new System.Drawing.Size(121, 21);
             this.comboBoxProject.TabIndex = 15;
@@ -134,7 +135,7 @@ namespace ProjLTI
             // labelUser
             // 
             this.labelUser.AutoSize = true;
-            this.labelUser.Location = new System.Drawing.Point(480, 21);
+            this.labelUser.Location = new System.Drawing.Point(418, 20);
             this.labelUser.Name = "labelUser";
             this.labelUser.Size = new System.Drawing.Size(32, 13);
             this.labelUser.TabIndex = 21;
@@ -143,9 +144,10 @@ namespace ProjLTI
             // labelUserLogin
             // 
             this.labelUserLogin.AutoSize = true;
-            this.labelUserLogin.Location = new System.Drawing.Point(516, 21);
+            this.labelUserLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelUserLogin.Location = new System.Drawing.Point(448, 21);
             this.labelUserLogin.Name = "labelUserLogin";
-            this.labelUserLogin.Size = new System.Drawing.Size(0, 13);
+            this.labelUserLogin.Size = new System.Drawing.Size(2, 12);
             this.labelUserLogin.TabIndex = 22;
             // 
             // textBoxIPServer
@@ -167,7 +169,7 @@ namespace ProjLTI
             // labelServidor
             // 
             this.labelServidor.AutoSize = true;
-            this.labelServidor.Location = new System.Drawing.Point(334, 21);
+            this.labelServidor.Location = new System.Drawing.Point(266, 20);
             this.labelServidor.Name = "labelServidor";
             this.labelServidor.Size = new System.Drawing.Size(41, 13);
             this.labelServidor.TabIndex = 26;
@@ -176,9 +178,10 @@ namespace ProjLTI
             // label_IP
             // 
             this.label_IP.AutoSize = true;
-            this.label_IP.Location = new System.Drawing.Point(373, 21);
+            this.label_IP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label_IP.Location = new System.Drawing.Point(305, 21);
             this.label_IP.Name = "label_IP";
-            this.label_IP.Size = new System.Drawing.Size(0, 13);
+            this.label_IP.Size = new System.Drawing.Size(2, 12);
             this.label_IP.TabIndex = 27;
             // 
             // btnInstances
@@ -204,7 +207,7 @@ namespace ProjLTI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(322, 98);
+            this.label1.Location = new System.Drawing.Point(326, 107);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 30;
@@ -213,16 +216,17 @@ namespace ProjLTI
             // labelstatsInstances
             // 
             this.labelstatsInstances.AutoSize = true;
-            this.labelstatsInstances.Location = new System.Drawing.Point(322, 142);
+            this.labelstatsInstances.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelstatsInstances.Location = new System.Drawing.Point(326, 135);
             this.labelstatsInstances.Name = "labelstatsInstances";
-            this.labelstatsInstances.Size = new System.Drawing.Size(35, 13);
+            this.labelstatsInstances.Size = new System.Drawing.Size(30, 12);
             this.labelstatsInstances.TabIndex = 31;
             this.labelstatsInstances.Text = "label2";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(415, 98);
+            this.label4.Location = new System.Drawing.Point(419, 107);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 32;
@@ -231,7 +235,7 @@ namespace ProjLTI
             // labelstatsVCPUs
             // 
             this.labelstatsVCPUs.AutoSize = true;
-            this.labelstatsVCPUs.Location = new System.Drawing.Point(415, 142);
+            this.labelstatsVCPUs.Location = new System.Drawing.Point(419, 135);
             this.labelstatsVCPUs.Name = "labelstatsVCPUs";
             this.labelstatsVCPUs.Size = new System.Drawing.Size(35, 13);
             this.labelstatsVCPUs.TabIndex = 33;
@@ -240,7 +244,7 @@ namespace ProjLTI
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(500, 98);
+            this.label6.Location = new System.Drawing.Point(504, 107);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 34;
@@ -249,7 +253,7 @@ namespace ProjLTI
             // labelstatsRAM
             // 
             this.labelstatsRAM.AutoSize = true;
-            this.labelstatsRAM.Location = new System.Drawing.Point(500, 142);
+            this.labelstatsRAM.Location = new System.Drawing.Point(504, 135);
             this.labelstatsRAM.Name = "labelstatsRAM";
             this.labelstatsRAM.Size = new System.Drawing.Size(35, 13);
             this.labelstatsRAM.TabIndex = 35;
@@ -267,7 +271,7 @@ namespace ProjLTI
             // labelstatsVolumes
             // 
             this.labelstatsVolumes.AutoSize = true;
-            this.labelstatsVolumes.Location = new System.Drawing.Point(313, 244);
+            this.labelstatsVolumes.Location = new System.Drawing.Point(319, 235);
             this.labelstatsVolumes.Name = "labelstatsVolumes";
             this.labelstatsVolumes.Size = new System.Drawing.Size(35, 13);
             this.labelstatsVolumes.TabIndex = 37;
@@ -285,7 +289,7 @@ namespace ProjLTI
             // labelstatsVolumeSnaps
             // 
             this.labelstatsVolumeSnaps.AutoSize = true;
-            this.labelstatsVolumeSnaps.Location = new System.Drawing.Point(400, 245);
+            this.labelstatsVolumeSnaps.Location = new System.Drawing.Point(406, 236);
             this.labelstatsVolumeSnaps.Name = "labelstatsVolumeSnaps";
             this.labelstatsVolumeSnaps.Size = new System.Drawing.Size(41, 13);
             this.labelstatsVolumeSnaps.TabIndex = 39;
@@ -294,7 +298,7 @@ namespace ProjLTI
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(485, 206);
+            this.label12.Location = new System.Drawing.Point(517, 207);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(82, 13);
             this.label12.TabIndex = 40;
@@ -303,7 +307,7 @@ namespace ProjLTI
             // labelstatsVolumeStorage
             // 
             this.labelstatsVolumeStorage.AutoSize = true;
-            this.labelstatsVolumeStorage.Location = new System.Drawing.Point(485, 245);
+            this.labelstatsVolumeStorage.Location = new System.Drawing.Point(523, 237);
             this.labelstatsVolumeStorage.Name = "labelstatsVolumeStorage";
             this.labelstatsVolumeStorage.Size = new System.Drawing.Size(41, 13);
             this.labelstatsVolumeStorage.TabIndex = 41;
@@ -321,17 +325,28 @@ namespace ProjLTI
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(265, 63);
+            this.label15.Location = new System.Drawing.Point(269, 72);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(49, 13);
             this.label15.TabIndex = 43;
             this.label15.Text = "Compute";
+            // 
+            // btnRefreshStats
+            // 
+            this.btnRefreshStats.Location = new System.Drawing.Point(694, 18);
+            this.btnRefreshStats.Name = "btnRefreshStats";
+            this.btnRefreshStats.Size = new System.Drawing.Size(75, 23);
+            this.btnRefreshStats.TabIndex = 44;
+            this.btnRefreshStats.Text = "Refresh";
+            this.btnRefreshStats.UseVisualStyleBackColor = true;
+            this.btnRefreshStats.Click += new System.EventHandler(this.btnRefreshStats_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(801, 355);
+            this.Controls.Add(this.btnRefreshStats);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.labelstatsVolumeStorage);
@@ -401,6 +416,7 @@ namespace ProjLTI
         private System.Windows.Forms.Label labelstatsVolumeStorage;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btnRefreshStats;
     }
 }
 

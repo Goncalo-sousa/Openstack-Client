@@ -28,6 +28,7 @@ namespace ProjLTI
         public Boolean authenticated = false;
         public String ipaddr = "178.128.137.202";
         public Image file;
+        public int oldSelected;
 
         public object MessegeBox { get; private set; }
 
@@ -37,7 +38,14 @@ namespace ProjLTI
             this.btnOpenProject.Hide();
             this.labelUser.Hide();
             this.labelServidor.Hide();
+            if (this.comboBoxProject.SelectedIndex != oldSelected)
+            {
+                statistics();
+                oldSelected = this.comboBoxProject.SelectedIndex;
+            }
             
+
+
 
         }
 
@@ -194,7 +202,9 @@ namespace ProjLTI
             this.labelUserLogin.Text = this.textBoxUsername.Text;
             this.label_IP.Text = ipaddr;
             this.comboBoxProject.SelectedIndex = 0;
+            oldSelected = this.comboBoxProject.SelectedIndex;
             authWithToken();
+            statistics();
 
 
         }
@@ -220,7 +230,7 @@ namespace ProjLTI
         {
             Volumes formAux = new Volumes(this);
             formAux.ShowDialog();
-
+            statistics();
          
         }
 
@@ -275,7 +285,7 @@ namespace ProjLTI
                 myWebClient = new WebClient();
                 myWebClient.Headers.Add("X-Auth-Token", authToken);
 
-                MessageBox.Show(authToken);
+              //  MessageBox.Show(authToken);
                 var dataVolumes = myWebClient.DownloadString("http://"+ipaddr+"/volume/v3/" + idProject.Id + "/volumes/detail");
                 var volumes = JsonConvert.DeserializeObject<AllVolumes>(dataVolumes);
                 return volumes;
@@ -285,11 +295,15 @@ namespace ProjLTI
 
         public AllVirtualMachines instances()
         {
-            authWithToken();
+            if (!authenticated || this.comboBoxProject.SelectedIndex != oldSelected)
+            {
+                authWithToken();
+            }
+            
             var myWebClient = new WebClient();
             myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
             myWebClient.Headers.Add("X-Auth-Token", authToken);
-            Console.WriteLine(authToken);
+          //  Console.WriteLine(authToken);
             var dataVMs = myWebClient.DownloadString("http://" + ipaddr + "/compute/v2.1/servers");
             var servers = JsonConvert.DeserializeObject<AllVirtualMachines>(dataVMs);
             return servers;
@@ -297,15 +311,19 @@ namespace ProjLTI
         
         public AllImages images()
         {
-            authWithToken();
+            if (!authenticated || this.comboBoxProject.SelectedIndex != oldSelected)
+            {
+                authWithToken();
+            }
+            
             var myWebClient = new WebClient();
             myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
             myWebClient.Headers.Add("X-Auth-Token", authToken);
-            Console.WriteLine(authToken);
+          //  Console.WriteLine(authToken);
             var dataImages = myWebClient.DownloadString("http://" + ipaddr + "/image/v2/images");
-            Console.WriteLine(dataImages);
+          //  Console.WriteLine(dataImages);
             var images = JsonConvert.DeserializeObject<AllImages>(dataImages);
-            Console.WriteLine(images);
+           // Console.WriteLine(images);
             return images;
         }
 
@@ -317,10 +335,10 @@ namespace ProjLTI
             myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
             myWebClient.Headers.Add("X-Auth-Token", authToken);
 
-            MessageBox.Show(idProject.Id + " and " + dataCreation +" adn " + authToken);
+          //  MessageBox.Show(idProject.Id + " and " + dataCreation +" adn " + authToken);
             var responseVolumes = myWebClient.UploadString("http://"+ipaddr+"/volume/v3/" + idProject.Id + "/volumes", dataCreation);
 
-            MessageBox.Show(responseVolumes);
+           // MessageBox.Show(responseVolumes);
         }
 
         /*private void btnShowVMs_Click(object sender, EventArgs e)
@@ -369,7 +387,7 @@ namespace ProjLTI
             }
            
         }*/
-        public void remendo()
+        private void remendo()
         {
             this.labelUsername.Hide();
             this.labelPass.Hide();
@@ -428,14 +446,17 @@ namespace ProjLTI
         }*/
         public void uploadImage(string name, string disk_format, string container_format)
         {
-            authWithToken();
+            if (!authenticated || this.comboBoxProject.SelectedIndex != oldSelected)
+            {
+                authWithToken();
+            }
             OpenFileDialog openFileDialog = new OpenFileDialog();  //abrir o ficheiro
             openFileDialog.Filter = "Cloud Image (*.ami, *.ari, *.aki, *.vhd, *.vhdx, *.vmdk, *.raw, *.qcow2, *.vdi, *.ploop, *.iso) | *.ami; *.ari; *.aki; *.vhd; *.vhdx; *.vmdk; *.raw; *.qcow2; *.vdi; *.ploop; *.iso"; //filtrar por tipo de ficheiro
             String fileContent;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 var pathFile = openFileDialog.FileName;
-                MessageBox.Show(pathFile);
+                //MessageBox.Show(pathFile);
                 var fileStream = openFileDialog.OpenFile();
 
                 using (StreamReader reader = new StreamReader(fileStream))
@@ -451,22 +472,28 @@ namespace ProjLTI
                     myWebClient.Headers.Add("X-Auth-Token", authToken);
                     String jsonToSend = "{\"container_format\":" +"\""+container_format+"\""+",\"disk_format\":"+"\""+disk_format+"\""+",\"name\":"+"\""+name+"\""+"}";
                     var dataVMs = myWebClient.UploadString("http://" + ipaddr + "/image/v2/images", jsonToSend);
-                    MessageBox.Show(dataVMs);
+                   // MessageBox.Show(dataVMs);
                     var file = JsonConvert.DeserializeObject<Image>(dataVMs);
 
 
                     var myWebClientFile = new WebClient();
                     myWebClientFile.Headers[HttpRequestHeader.ContentType] = "application/octet-stream";
                     myWebClientFile.Headers.Add("X-Auth-Token", authToken);
-                    MessageBox.Show(file.File);
+                   // MessageBox.Show(file.File);
                     var responseVolumes = myWebClientFile.UploadString("http://" + ipaddr + "/image" + file.File, WebRequestMethods.Http.Put, fileContent);
 
                 }
             }
         }
 
-        public void authWithToken()
+        private void authWithToken()
         {
+            /*if (this.comboBoxProject.SelectedIndex != oldSelected)
+            {
+                statistics();
+                oldSelected = this.comboBoxProject.SelectedIndex;
+
+            }*/
             var myWebClient = new WebClient();
             myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
             myWebClient.Headers.Add("X-Auth-Token", authToken);
@@ -478,7 +505,7 @@ namespace ProjLTI
             
                 idProject = projects.projects[projectIndex];
 
-                // MessageBox.Show(idProject.Id);
+               // MessageBox.Show(idProject.Id);
                 String jsonWithScope = "{\"auth\":{\"identity\":{\"methods\":[\"password\"],\"password\":{\"user\":{\"name\":" + "\"" + this.textBoxUsername.Text + "\",\"domain\":{\"name\":\"Default\"},\"password\":" + "\"" + this.textBoxPassword.Text + "\"}}},\"scope\": {\"project\": {\"id\":" + "\"" + idProject.Id + "\"}}}}";
 
 
@@ -495,8 +522,15 @@ namespace ProjLTI
                 }
 
                 authenticated = true;
-         
-            
+            oldSelected = this.comboBoxProject.SelectedIndex;
+
+            /*if (this.comboBoxProject.SelectedIndex != oldSelected)
+            {
+                statistics();
+                oldSelected = this.comboBoxProject.SelectedIndex;
+
+            }*/
+
         }
 
         public void deleteImage(string idImage)
@@ -520,12 +554,16 @@ namespace ProjLTI
         {
             Instances formAux = new Instances(this);
             formAux.ShowDialog();
+            statistics();
+            
         }
 
         private void btnImages_Click(object sender, EventArgs e)
         {
             Images formAux = new Images(this);
             formAux.ShowDialog();
+            statistics();
+
         }
 
         public AllFlavors getFlavors()
@@ -572,15 +610,53 @@ namespace ProjLTI
             myWebClient.UploadString("http://" + ipaddr + "/compute/v2.1/servers/"+idInstance, WebRequestMethods.Http.Put, jsonToEdit);
         }
 
-        public void statistics()
+        private void statistics()
         {
             var myWebClient = new WebClient();
             myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
             myWebClient.Headers.Add("X-Auth-Token", authToken);
+            //Console.WriteLine(authToken);
+            if (this.comboBoxProject.SelectedIndex != -1)
+            {
+                var dataStatsCompute = myWebClient.DownloadString("http://" + ipaddr + "/compute/v2.1/os-quota-sets/" + idProject.Id + "/detail");
+                var statsCompute = JsonConvert.DeserializeObject<dynamic>(dataStatsCompute);
+                string coresInUse = statsCompute["quota_set"]["cores"]["in_use"];
+                string coresLimit = statsCompute["quota_set"]["cores"]["limit"];
+                string instancesInUse = statsCompute["quota_set"]["instances"]["in_use"];
+                string instancesLimit = statsCompute["quota_set"]["instances"]["limit"];
+                string ramInUse = statsCompute["quota_set"]["ram"]["in_use"];
+                string ramLimit = statsCompute["quota_set"]["ram"]["limit"];
 
-            //var statsCompute = myWebClient.DownloadString("http://" + ipaddr + "/compute/v2.1/os-quota-sets/"+idProject+"/detail");
-            //var statsvolumes = myWebClient.DownloadString("http://" + ipaddr + "/compute/v2.1/os-quota-sets/"+idProject+"/detail");
+                this.labelstatsInstances.Text = instancesInUse + " - " + instancesLimit;
+                this.labelstatsVCPUs.Text = coresInUse + " - " + coresLimit;
+                this.labelstatsRAM.Text = ramInUse + " - " + ramLimit;
 
+                var dataStatsVolumes = myWebClient.DownloadString("http://"+ipaddr+"/volume/v3/"+idProject.Id+"/limits");
+                var statsVolumes = JsonConvert.DeserializeObject<dynamic>(dataStatsVolumes);
+                string volumesLimit = statsVolumes["limits"]["absolute"]["maxTotalVolumes"];
+                string volumesInUse = statsVolumes["limits"]["absolute"]["totalVolumesUsed"];
+                string volumesLimitSnaps = statsVolumes["limits"]["absolute"]["maxTotalSnapshots"];
+                string volumesInUseSnaps = statsVolumes["limits"]["absolute"]["totalSnapshotsUsed"];
+                string volumesLimitStorage = statsVolumes["limits"]["absolute"]["maxTotalVolumeGigabytes"];
+                string volumesInUseStorage = statsVolumes["limits"]["absolute"]["totalGigabytesUsed"];
+
+                this.labelstatsVolumes.Text = volumesInUse + " - " + volumesLimit;
+                this.labelstatsVolumeSnaps.Text = volumesInUseSnaps + " - " + volumesLimitSnaps;
+                this.labelstatsVolumeStorage.Text = volumesInUseStorage + " - " + volumesLimitStorage;
+            }
+            
+
+        }
+
+        private void refreshStats()
+        {
+            authWithToken();
+            statistics();
+        }
+
+        private void btnRefreshStats_Click(object sender, EventArgs e)
+        {
+            refreshStats();
         }
     }
 }
