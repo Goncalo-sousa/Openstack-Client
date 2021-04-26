@@ -154,7 +154,7 @@ namespace ProjLTI
             //String jsonToSend = "{\"auth\":{\"identity\":{\"methods\":[\"password\"],\"password\":{\"user\":{\"name\":\"demo\",\"domain\":{\"name\":\"Default\"},\"password\":\"devstack\"}}}}}";
 
             // ... PEDIDO POST AO API DO KEYSTONE
-
+            
             var responseString = myWebClient.UploadString("http://" + ipaddr + "/identity/v3/auth/tokens", jsonToSend);
             WebHeaderCollection myWebHeaderCollection = myWebClient.ResponseHeaders;
 
@@ -213,7 +213,7 @@ namespace ProjLTI
 
         public void createlistBoxProjects(string id, string name, string url)
         {
-            string aux = "Id:" + id + " || Name:" + name + " || Url:" + url;
+           // string aux = "Id:" + id + " || Name:" + name + " || Url:" + url;
 
             this.comboBoxProject.Items.Add(name);
         }
@@ -578,7 +578,6 @@ namespace ProjLTI
 
             var dataFlavors = myWebClient.DownloadString("http://" + ipaddr + "/compute/v2.1/flavors");
             var flavors = JsonConvert.DeserializeObject<AllFlavors>(dataFlavors);
-
             return flavors;
 
         }
@@ -590,7 +589,6 @@ namespace ProjLTI
             myWebClient.Headers.Add("X-Auth-Token", authToken);
 
             var dataNetworks = myWebClient.DownloadString("http://" + ipaddr + ":9696/v2.0/networks");
-            // var dataNetworks = myWebClient.DownloadString("http://157.245.68.113:9696/v2.0/networks");
             var networks = JsonConvert.DeserializeObject<AllNetworks>(dataNetworks);
             return networks;
 
@@ -619,7 +617,7 @@ namespace ProjLTI
             var myWebClient = new WebClient();
             myWebClient.Headers[HttpRequestHeader.ContentType] = "application/json";
             myWebClient.Headers.Add("X-Auth-Token", authToken);
-            //Console.WriteLine(authToken);
+            
             if (this.comboBoxProject.SelectedIndex != -1)
             {
                 var dataStatsCompute = myWebClient.DownloadString("http://" + ipaddr + "/compute/v2.1/os-quota-sets/" + idProject.Id + "/detail");
