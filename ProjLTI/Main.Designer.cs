@@ -144,10 +144,9 @@ namespace ProjLTI
             // labelUserLogin
             // 
             this.labelUserLogin.AutoSize = true;
-            this.labelUserLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelUserLogin.Location = new System.Drawing.Point(448, 21);
             this.labelUserLogin.Name = "labelUserLogin";
-            this.labelUserLogin.Size = new System.Drawing.Size(2, 12);
+            this.labelUserLogin.Size = new System.Drawing.Size(0, 10);
             this.labelUserLogin.TabIndex = 22;
             // 
             // textBoxIPServer
@@ -178,10 +177,9 @@ namespace ProjLTI
             // label_IP
             // 
             this.label_IP.AutoSize = true;
-            this.label_IP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label_IP.Location = new System.Drawing.Point(305, 21);
             this.label_IP.Name = "label_IP";
-            this.label_IP.Size = new System.Drawing.Size(2, 12);
+            this.label_IP.Size = new System.Drawing.Size(0, 10);
             this.label_IP.TabIndex = 27;
             // 
             // btnInstances
@@ -207,7 +205,7 @@ namespace ProjLTI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(326, 107);
+            this.label1.Location = new System.Drawing.Point(313, 107);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 30;
@@ -216,17 +214,16 @@ namespace ProjLTI
             // labelstatsInstances
             // 
             this.labelstatsInstances.AutoSize = true;
-            this.labelstatsInstances.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelstatsInstances.Location = new System.Drawing.Point(326, 135);
             this.labelstatsInstances.Name = "labelstatsInstances";
-            this.labelstatsInstances.Size = new System.Drawing.Size(30, 12);
+            this.labelstatsInstances.Size = new System.Drawing.Size(28, 10);
             this.labelstatsInstances.TabIndex = 31;
             this.labelstatsInstances.Text = "label2";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(419, 107);
+            this.label4.Location = new System.Drawing.Point(409, 107);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 13);
             this.label4.TabIndex = 32;
@@ -235,16 +232,16 @@ namespace ProjLTI
             // labelstatsVCPUs
             // 
             this.labelstatsVCPUs.AutoSize = true;
-            this.labelstatsVCPUs.Location = new System.Drawing.Point(419, 135);
+            this.labelstatsVCPUs.Location = new System.Drawing.Point(413, 138);
             this.labelstatsVCPUs.Name = "labelstatsVCPUs";
-            this.labelstatsVCPUs.Size = new System.Drawing.Size(35, 13);
+            this.labelstatsVCPUs.Size = new System.Drawing.Size(28, 10);
             this.labelstatsVCPUs.TabIndex = 33;
             this.labelstatsVCPUs.Text = "label5";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(504, 107);
+            this.label6.Location = new System.Drawing.Point(498, 107);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 34;
@@ -253,9 +250,9 @@ namespace ProjLTI
             // labelstatsRAM
             // 
             this.labelstatsRAM.AutoSize = true;
-            this.labelstatsRAM.Location = new System.Drawing.Point(504, 135);
+            this.labelstatsRAM.Location = new System.Drawing.Point(501, 138);
             this.labelstatsRAM.Name = "labelstatsRAM";
-            this.labelstatsRAM.Size = new System.Drawing.Size(35, 13);
+            this.labelstatsRAM.Size = new System.Drawing.Size(28, 10);
             this.labelstatsRAM.TabIndex = 35;
             this.labelstatsRAM.Text = "label7";
             // 

@@ -48,8 +48,9 @@ namespace ProjLTI
             {
                 return;
             }
-            var index = this.listBoxVMs.SelectedIndex;
-            var idInstance = instances.servers[index].Id;
+            int indexx = this.listViewVMs.FocusedItem.Index;
+            // var index = this.listBoxVMs.SelectedIndex;
+            var idInstance = instances.servers[indexx].Id;
             formMain.deleteInstance(idInstance);
             refreshListBox();
         }
@@ -61,7 +62,14 @@ namespace ProjLTI
 
         private void Instances_Load(object sender, EventArgs e)
         {
-            
+            this.listViewVMs.View = View.Details;
+            this.listViewVMs.Columns.Clear();
+            this.listViewVMs.Columns.Add("Name", -2, HorizontalAlignment.Left);
+            this.listViewVMs.Columns.Add("Status", -2, HorizontalAlignment.Left);
+            this.listViewVMs.Columns.Add("Visibility", -2, HorizontalAlignment.Left);
+            this.listViewVMs.Columns.Add("Size", -2, HorizontalAlignment.Left);
+            this.listViewVMs.Columns.Add("Disk Format", -2, HorizontalAlignment.Left);
+
             var instances = formMain.instances();
             if (instances == null)
             {
@@ -98,19 +106,23 @@ namespace ProjLTI
         {
 
             string aux = "Id:" + id + " || Name:" + name;
-
-            this.listBoxVMs.Items.Add(aux);
+            string[] row = { id, name };
+            var listItem = new ListViewItem(row);
+            this.listViewVMs.Items.Add(listItem);
+            // this.listBoxVMs.Items.Add(aux);
+            this.listViewVMs.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
 
         public void refreshListBox()
         {
-            this.listBoxVMs.Items.Clear();
+            // this.listBoxVMs.Items.Clear();
+            this.listViewVMs.Items.Clear();
             var instances = formMain.instances();
             if (instances == null)
             {
                 return;
             }
-            this.listBoxVMs.Items.Clear();
+            // this.listBoxVMs.Items.Clear();
             foreach (var itemVM in instances.servers)
             {
                 createlistBoxVMS(itemVM.Id, itemVM.Name);
@@ -120,8 +132,9 @@ namespace ProjLTI
         public void editInstances(string name)
         {
             var instances = formMain.instances();
-            var idInstance = instances.servers[this.listBoxVMs.SelectedIndex].Id;
-            formMain.editInstance(name,idInstance);
+            //var idInstance = instances.servers[this.listBoxVMs.SelectedIndex].Id;
+            var idInstance = instances.servers[this.listViewVMs.FocusedItem.Index].Id;
+            formMain.editInstance(name, idInstance);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
