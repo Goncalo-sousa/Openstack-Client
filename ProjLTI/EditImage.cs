@@ -12,8 +12,8 @@ namespace ProjLTI
 {
     public partial class EditImage : Form
     {
-        Instances formInstances;
-        public EditImage(Instances instancesAux)
+        InstancesForm formInstances;
+        public EditImage(InstancesForm instancesAux)
         {
             InitializeComponent();
             formInstances = instancesAux;

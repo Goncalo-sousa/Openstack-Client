@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace ProjLTI
 {
-    public partial class Images : Form
+    public partial class ImagesForm : Form
     {
-        Main formMain;
-        public Images(Main mainAux)
+        MainForm formMain;
+        public ImagesForm(MainForm mainAux)
         {
             InitializeComponent();
             this.comboBoxDiskFormat.SelectedItem = null;
@@ -47,17 +47,21 @@ namespace ProjLTI
             foreach (var field in images.images)
             {
 
-                createlistBoxImages(field.Name, field.Status, field.Visibility, field.Size, field.DiskFormat);
+                createlistBoxImages(field.Name, field.Status, field.Visibility, field.Size, field.DiskFormat, field.Protected);
             }
         }
 
-        public void createlistBoxImages(string name, string status, string visibility, string size, string disk_format)
+        public void createlistBoxImages(string name, string status, string visibility, string size, string disk_format, bool imageProtected)
         {
 
             //string aux = "Name: " + name + " Status: " + status + " Visibility: " + visibility + " Size: " + size + " Disk Format: " + disk_format;
             //string sizeHuman = string.Empty;
             /*if (size.Equals(null))
             {*/
+            if (imageProtected || size == null)
+            {
+                size = "0";
+            }
             string sizeHuman = BytesToString(long.Parse(size));
             /*}
             else
@@ -95,7 +99,7 @@ namespace ProjLTI
             Console.WriteLine(images);
             foreach (var field in images.images)
             {
-                createlistBoxImages(field.Name, field.Status, field.Visibility, field.Size, field.DiskFormat);
+                createlistBoxImages(field.Name, field.Status, field.Visibility, field.Size, field.DiskFormat, field.Protected);
             }
 
         }

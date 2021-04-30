@@ -1,7 +1,7 @@
 ﻿
 namespace ProjLTI
 {
-    partial class Volumes
+    partial class VolumesForm
     {
         /// <summary>
         /// Required designer variable.

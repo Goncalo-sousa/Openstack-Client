@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace ProjLTI
 {
-    public partial class Volumes : Form
+    public partial class VolumesForm : Form
     {
-        Main formMain;
+        MainForm formMain;
 
-        public Volumes(Main mainAux)
+        public VolumesForm(MainForm mainAux)
         {
             InitializeComponent();
             formMain = mainAux;
@@ -56,7 +56,7 @@ namespace ProjLTI
              {
                  "Name: " + name +" Size: " + size + " description: " + description + " Type: " + volume_type + " Status: " + status + " Availability zone: " + zone + " Bootable: " + bootable
          });*/
-            string sizeHuman = BytesToString(size);
+            string sizeHuman = size + " GiB";
             string[] row = { name, sizeHuman, description, volume_type, status, zone, bootable.ToString() };
             var listItem = new ListViewItem(row);
             this.listViewVolumes.Items.Add(listItem);

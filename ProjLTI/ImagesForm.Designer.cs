@@ -1,7 +1,7 @@
 ﻿
 namespace ProjLTI
 {
-    partial class Images
+    partial class ImagesForm
     {
         /// <summary>
         /// Required designer variable.

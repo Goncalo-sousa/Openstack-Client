@@ -1,7 +1,7 @@
 ﻿
 namespace ProjLTI
 {
-    partial class Instances
+    partial class InstancesForm
     {
         /// <summary>
         /// Required designer variable.

@@ -21,6 +21,7 @@ namespace ProjLTI
         public string Visibility { get; set; }
         public string Size { get; set; }
         public string Id { get; set; }
+        public bool Protected { get; set; }
         public string File { get; set; }
 
         //public string Status { get; set; }

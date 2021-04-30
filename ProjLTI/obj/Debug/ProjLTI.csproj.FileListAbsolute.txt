@@ -30,8 +30,9 @@ C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\bin\Debug\System.Text.E
 C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\bin\Debug\System.Text.Json.xml
 C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\bin\Debug\System.ValueTuple.xml
-C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.Main.resources
-C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.Instances.resources
-C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.Images.resources
-C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.Volumes.resources
 C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.EditImage.resources
+C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.ContainersForm.resources
+C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.ImagesForm.resources
+C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.InstancesForm.resources
+C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.MainForm.resources
+C:\Users\Goncalo\source\repos\ProjLTI\projetoLTI\ProjLTI\obj\Debug\ProjLTI.VolumesForm.resources

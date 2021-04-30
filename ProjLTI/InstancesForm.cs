@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace ProjLTI
 {
-    public partial class Instances : Form
+    public partial class InstancesForm : Form
     {
-        Main formMain;
-        public Instances(Main mainAux)
+        MainForm formMain;
+        public InstancesForm(MainForm mainAux)
         {
             InitializeComponent();
             formMain = mainAux;
