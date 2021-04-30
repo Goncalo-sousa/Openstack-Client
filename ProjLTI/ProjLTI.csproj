@@ -89,7 +89,6 @@
     <Compile Include="ContainersForm.Designer.cs">
       <DependentUpon>ContainersForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreationInstances.cs" />
     <Compile Include="EditImage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,8 +96,8 @@
       <DependentUpon>EditImage.cs</DependentUpon>
     </Compile>
     <Compile Include="Flavor.cs" />
-    <Compile Include="Imag.cs" />
     <Compile Include="Image.cs" />
+    <Compile Include="ImageFile.cs" />
     <Compile Include="ImagesForm.cs">
       <SubType>Form</SubType>
     </Compile>

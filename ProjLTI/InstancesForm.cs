@@ -50,7 +50,7 @@ namespace ProjLTI
             }
             int indexx = this.listViewVMs.FocusedItem.Index;
             // var index = this.listBoxVMs.SelectedIndex;
-            var idInstance = instances.servers[indexx].Id;
+            var idInstance = instances.servers[indexx].id;
             formMain.deleteInstance(idInstance);
             refreshListBox();
         }
@@ -65,10 +65,9 @@ namespace ProjLTI
             this.listViewVMs.View = View.Details;
             this.listViewVMs.Columns.Clear();
             this.listViewVMs.Columns.Add("Name", -2, HorizontalAlignment.Left);
+            this.listViewVMs.Columns.Add("Flavor", -2, HorizontalAlignment.Left);
             this.listViewVMs.Columns.Add("Status", -2, HorizontalAlignment.Left);
-            this.listViewVMs.Columns.Add("Visibility", -2, HorizontalAlignment.Left);
-            this.listViewVMs.Columns.Add("Size", -2, HorizontalAlignment.Left);
-            this.listViewVMs.Columns.Add("Disk Format", -2, HorizontalAlignment.Left);
+            this.listViewVMs.Columns.Add("Image", -2, HorizontalAlignment.Left);
 
             var instances = formMain.instances();
             if (instances == null)
@@ -77,7 +76,7 @@ namespace ProjLTI
             }
             foreach (var itemVM in instances.servers)
             {
-                createlistBoxVMS(itemVM.Id, itemVM.Name);
+                createlistBoxVMS(itemVM.name, itemVM.flavor.id, itemVM.status, itemVM.accessIPv4, itemVM.image.id);
             }
 
             var getFlavors = formMain.getFlavors();
@@ -102,11 +101,28 @@ namespace ProjLTI
             }
         }
 
-        public void createlistBoxVMS(string id, string name)
+        public void createlistBoxVMS(string name, string flavorid, string status, string power_state, string imageid)
         {
-
-            string aux = "Id:" + id + " || Name:" + name;
-            string[] row = { id, name };
+            string flavor="";
+            string image="";
+            var getFlavors = formMain.getFlavors();
+            foreach (var item in getFlavors.flavors)
+            {
+                if (item.Id.Equals(flavorid))
+                {
+                    flavor = item.Name;
+                }  
+            }
+            var getimages = formMain.images();
+            foreach (var item in getimages.images)
+            {
+                if (item.Id.Equals(imageid))
+                {
+                    image = item.Name;
+                }
+            }
+            
+            string[] row = { name, flavor, status, image };
             var listItem = new ListViewItem(row);
             this.listViewVMs.Items.Add(listItem);
             // this.listBoxVMs.Items.Add(aux);
@@ -125,7 +141,7 @@ namespace ProjLTI
             // this.listBoxVMs.Items.Clear();
             foreach (var itemVM in instances.servers)
             {
-                createlistBoxVMS(itemVM.Id, itemVM.Name);
+                createlistBoxVMS(itemVM.name, itemVM.flavor.id, itemVM.status, itemVM.accessIPv4, itemVM.image.id);
             }
 
         }
@@ -133,7 +149,7 @@ namespace ProjLTI
         {
             var instances = formMain.instances();
             //var idInstance = instances.servers[this.listBoxVMs.SelectedIndex].Id;
-            var idInstance = instances.servers[this.listViewVMs.FocusedItem.Index].Id;
+            var idInstance = instances.servers[this.listViewVMs.FocusedItem.Index].id;
             formMain.editInstance(name, idInstance);
         }
 
